@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Emoji Editor \u{1f680}
+Exec=/usr/bin/emoji-editor
+Icon=emoji-editor
+Categories=Utility;TextEditor;
+Comment=An editor with unicode support \u{2728}\u{1f310}

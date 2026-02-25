@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Hidden Application
+Exec=/usr/bin/hidden-app
+NoDisplay=true
+Comment=This should not appear in listings

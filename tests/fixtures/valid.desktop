@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Test Application
+Exec=/usr/bin/test-app %u
+Icon=test-app
+Categories=Development;IDE;
+Comment=A test application for integration testing
+Terminal=false
