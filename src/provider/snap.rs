@@ -181,4 +181,33 @@ mod tests {
         let names = SnapProvider::parse_snap_list(output);
         assert!(names.is_empty());
     }
+
+    #[test]
+    fn test_parse_snap_list_empty_lines() {
+        let output = "Name      Version    Rev    Tracking       Publisher   Notes\n\n\nfirefox   128.0      4173   latest/stable  mozilla     -\n\n";
+        let names = SnapProvider::parse_snap_list(output);
+        assert_eq!(names, vec!["firefox"]);
+    }
+
+    #[test]
+    fn test_parse_snap_list_malformed_line() {
+        // A line with only whitespace after the header should be skipped
+        let output = "Name      Version    Rev    Tracking       Publisher   Notes\n   \nfirefox   128.0      4173   latest/stable  mozilla     -\n";
+        let names = SnapProvider::parse_snap_list(output);
+        assert_eq!(names, vec!["firefox"]);
+    }
+
+    #[test]
+    fn test_provider_name_and_availability() {
+        let provider = SnapProvider::new();
+        assert_eq!(provider.name(), "snap");
+        // is_available depends on system, just ensure it doesn't panic
+        let _ = provider.is_available();
+    }
+
+    #[test]
+    fn test_parse_completely_empty() {
+        let names = SnapProvider::parse_snap_list("");
+        assert!(names.is_empty());
+    }
 }
