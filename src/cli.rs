@@ -10,8 +10,14 @@ fn parse_source(s: &str) -> Result<AppSource, String> {
         "flatpak" => Ok(AppSource::Flatpak),
         "snap" => Ok(AppSource::Snap),
         "standalone" => Ok(AppSource::Standalone),
+        "cargo" => Ok(AppSource::Cargo),
+        "npm" => Ok(AppSource::Npm),
+        "dpkg" => Ok(AppSource::Dpkg),
+        "rpm" => Ok(AppSource::Rpm),
+        "pacman" => Ok(AppSource::Pacman),
+        "brew" => Ok(AppSource::Brew),
         _ => Err(format!(
-            "invalid source '{}': expected desktop, flatpak, snap, or standalone",
+            "invalid source '{}': expected desktop, flatpak, snap, standalone, cargo, npm, dpkg, rpm, pacman, or brew",
             s
         )),
     }
@@ -35,6 +41,10 @@ pub struct Cli {
     /// Disable colored output
     #[arg(long)]
     pub no_color: bool,
+
+    /// Show source statistics after output
+    #[arg(long)]
+    pub stats: bool,
 
     #[command(subcommand)]
     pub command: Command,
@@ -73,6 +83,15 @@ pub enum Command {
     Path {
         /// Application name
         name: String,
+    },
+
+    /// Show system diagnostic: provider status, app counts, warnings
+    Doctor,
+
+    /// Generate shell completion script
+    Completions {
+        /// Shell to generate completions for
+        shell: clap_complete::Shell,
     },
 }
 
