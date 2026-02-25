@@ -1,6 +1,6 @@
 [package]
 name = "appgrep"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.75.0"
 description = "Unified CLI tool to discover all installed applications on Linux"
@@ -19,6 +19,7 @@ fuzzy-matcher = "0.3"
 comfy-table = "7"
 configparser = "3"
 dirs = "6"
+clap_complete = "4"
 
 [dev-dependencies]
 assert_cmd = "2"

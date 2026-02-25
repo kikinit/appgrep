@@ -9,6 +9,12 @@ pub enum AppSource {
     Flatpak,
     Snap,
     Standalone,
+    Cargo,
+    Npm,
+    Dpkg,
+    Rpm,
+    Pacman,
+    Brew,
 }
 
 impl AppSource {
@@ -19,6 +25,12 @@ impl AppSource {
             AppSource::Flatpak => 1,
             AppSource::Snap => 2,
             AppSource::Standalone => 3,
+            AppSource::Cargo => 4,
+            AppSource::Npm => 5,
+            AppSource::Dpkg => 6,
+            AppSource::Rpm => 7,
+            AppSource::Pacman => 8,
+            AppSource::Brew => 9,
         }
     }
 }
@@ -30,6 +42,12 @@ impl fmt::Display for AppSource {
             AppSource::Flatpak => write!(f, "flatpak"),
             AppSource::Snap => write!(f, "snap"),
             AppSource::Standalone => write!(f, "standalone"),
+            AppSource::Cargo => write!(f, "cargo"),
+            AppSource::Npm => write!(f, "npm"),
+            AppSource::Dpkg => write!(f, "dpkg"),
+            AppSource::Rpm => write!(f, "rpm"),
+            AppSource::Pacman => write!(f, "pacman"),
+            AppSource::Brew => write!(f, "brew"),
         }
     }
 }

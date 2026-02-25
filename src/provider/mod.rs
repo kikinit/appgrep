@@ -1,5 +1,11 @@
+pub mod brew;
+pub mod cargo;
 pub mod desktop;
+pub mod dnf;
+pub mod dpkg;
 pub mod flatpak;
+pub mod npm;
+pub mod pacman;
 pub mod snap;
 pub mod standalone;
 

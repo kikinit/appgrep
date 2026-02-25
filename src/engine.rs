@@ -5,8 +5,14 @@ use fuzzy_matcher::FuzzyMatcher;
 use rayon::prelude::*;
 
 use crate::app::{AppSource, Application};
+use crate::provider::brew::BrewProvider;
+use crate::provider::cargo::CargoProvider;
 use crate::provider::desktop::DesktopProvider;
+use crate::provider::dnf::RpmProvider;
+use crate::provider::dpkg::DpkgProvider;
 use crate::provider::flatpak::FlatpakProvider;
+use crate::provider::npm::NpmProvider;
+use crate::provider::pacman::PacmanProvider;
 use crate::provider::snap::SnapProvider;
 use crate::provider::standalone::StandaloneProvider;
 use crate::provider::AppProvider;
@@ -22,8 +28,19 @@ impl DiscoveryEngine {
             Box::new(FlatpakProvider::new()),
             Box::new(SnapProvider::new()),
             Box::new(StandaloneProvider::new()),
+            Box::new(CargoProvider::new()),
+            Box::new(NpmProvider::new()),
+            Box::new(DpkgProvider::new()),
+            Box::new(RpmProvider::new()),
+            Box::new(PacmanProvider::new()),
+            Box::new(BrewProvider::new()),
         ];
         Self { providers }
+    }
+
+    /// Get a reference to all registered providers.
+    pub fn providers(&self) -> &[Box<dyn AppProvider>] {
+        &self.providers
     }
 
     /// Discover all applications from all available providers in parallel.
